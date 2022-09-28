@@ -1,0 +1,212 @@
+/**
+ * base styles and typography
+ * ---------------
+ */
+:root {
+  --orange-050: #ffe8d9;
+  --orange-100: #ffd0b5;
+  --orange-200: #ffb088;
+  --orange-300: #ff9466;
+  --orange-400: #f9703e;
+  --orange-500: #f35627;
+  --orange-600: #de3a11;
+  --orange-700: #c52707;
+  --orange-800: #ad1d07;
+  --orange-900: #841003;
+
+  --grey-050: #f5f7fa;
+  --grey-100: #e4e7eb;
+  --grey-200: #cbd2d9;
+  --grey-300: #9aa5b1;
+  --grey-400: #7b8794;
+  --grey-500: #616e7c;
+  --grey-600: #52606d;
+  --grey-700: #3e4c59;
+  --grey-800: #323f4b;
+  --grey-900: #1f2933;
+}
+
+/*******************
+ Base styles
+ *******************/
+html {
+  font-size: 150%;
+  font-weight: 300;
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  line-height: 1.4;
+}
+
+body {
+  display: flex;
+  background-image: linear-gradient(236deg, #74ebd5, #acb6e5);
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/*******************
+  Calculator
+ *******************/
+.calculator {
+  position: relative;
+  box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.3);
+}
+
+.calculator::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  transition: opacity 0.15s ease-out;
+  box-shadow: 0 0 0 12px var(--grey-400), 0 0 30px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Uncomment this part to highlight the calculator */
+/*
+.calculator:focus,
+.calculator:focus-within {
+  outline: transparent;
+}
+
+.calculator:focus::before,
+.calculator:focus-within::before {
+  opacity: 1;
+} */
+
+/* Display */
+.calculator__display {
+  width: 16.25rem;
+  padding: 0.75rem 1rem;
+  background-color: var(--grey-900);
+  color: var(--grey-050);
+  font-size: calc(1rem * 1.2 * 1.2);
+  text-align: right;
+  overflow: hidden;
+}
+
+/* Keys */
+.calculator__keys {
+  display: grid;
+  grid-gap: 2px;
+  grid-template-columns: repeat(4, auto);
+  background-color: var(--grey-200);
+  grid-template-areas:
+    ". . . ."
+    "seven eight nine equal"
+    "four five six equal"
+    "one two three equal"
+    "zero decimal clear equal";
+}
+
+.calculator__keys > button {
+  position: relative;
+  width: 4em;
+  min-height: 3em;
+  padding: 0;
+  border: 0;
+  background: var(--grey-050);
+}
+
+/* .calculator__keys > button:hover, */
+.calculator__keys > button:focus,
+.calculator__keys > button:active {
+  z-index: 1;
+  background: var(--grey-100);
+}
+
+[data-key="0"] {
+  grid-area: zero;
+}
+
+[data-key="1"] {
+  grid-area: one;
+}
+[data-key="2"] {
+  grid-area: two;
+}
+[data-key="3"] {
+  grid-area: three;
+}
+[data-key="4"] {
+  grid-area: four;
+}
+[data-key="5"] {
+  grid-area: five;
+}
+[data-key="6"] {
+  grid-area: six;
+}
+[data-key="7"] {
+  grid-area: seven;
+}
+[data-key="8"] {
+  grid-area: eight;
+}
+
+[data-key="9"] {
+  grid-area: nine;
+}
+
+[data-key="decimal"] {
+  grid-area: decimal;
+}
+
+[data-key="clear"] {
+  grid-area: clear;
+}
+
+.calculator__keys > [data-key="equal"] {
+  grid-area: equal;
+  background-color: var(--orange-400);
+}
+
+.calculator__keys > [data-key="equal"]:hover,
+.calculator__keys > [data-key="equal"]:focus {
+  grid-area: equal;
+  background-color: var(--orange-500);
+}
+
+.calculator__keys > [data-button-type="operator"].is-pressed {
+  background: var(--grey-100);
+}
+
+.calculator__keys > [data-button-type="operator"] {
+  background-color: var(--grey-100);
+}
+
+.calculator__keys > [data-button-type="operator"].is-pressed,
+.calculator__keys > [data-button-type="operator"]:hover,
+.calculator__keys > [data-button-type="operator"]:focus {
+  background-color: var(--grey-200);
+}
+
+/* Round calculator */
+.calculator,
+.calculator::before {
+  border-top-right-radius: 0.5rem;
+  border-top-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+}
+
+.calculator__display {
+  border-top-right-radius: inherit;
+  border-top-left-radius: inherit;
+}
+
+.calculator__keys {
+  border-bottom-right-radius: inherit;
+  border-bottom-left-radius: inherit;
+}
+
+[data-key="equal"] {
+  border-bottom-right-radius: inherit;
+}
+
+[data-key="0"] {
+  border-bottom-left-radius: inherit;
+}
